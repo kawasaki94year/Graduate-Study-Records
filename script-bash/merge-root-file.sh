@@ -1,7 +1,7 @@
 #!/bin/bash
 # 设置要合并的文件名规则
 file_pattern="tag_[0-9][0-9]_test.root"
-# 设置要合并的文件所在的目录列表
+# 设置要合并的文件所在的目录列表(dir1表示相对路径)
 file_dirs=(
    "/path/to/root/files/dir1"
    "/path/to/root/files/dir2"
@@ -14,7 +14,7 @@ merged_file="merged.root"
 # 创建临时目录
 temp_dir=$(mktemp -d)
 # 合并文件
-for dir in "${file_dir[@]}"
+for dir in "${file_dirs[@]}"
 do
   cd "$dir"
   for file in $(find . -name "$file_pattern")
