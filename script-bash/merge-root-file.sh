@@ -19,7 +19,7 @@ do
   cd "$dir"
   for file in $(find . -name "$file_pattern")
   do
-    cp "file" "$temp_dir"
+    cp "$file" "$temp_dir"
     done
   done
 cd "temp_dir"
