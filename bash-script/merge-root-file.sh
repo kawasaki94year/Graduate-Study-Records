@@ -12,19 +12,19 @@ merged_dir="/path/to/merged/root/files"
 # 设置要输出的合并文件名
 merged_file="merged.root"
 # 创建临时目录
-temp_dir=$(mktemp -d)
+mkdir /path/to/output_file/merged_file
 # 合并文件
 for dir in "${file_dirs[@]}"
 do
   cd "$dir"
   for file in $(find . -name "$file_pattern")
   do
-    cp "$file" "$temp_dir"
+    cp "$file" "/path/to/output_file/merged_file"
     done
   done
-cd "temp_dir"
-hadd -f "$merged_dir/$merged_file" $(ls *.root)
+cd "/path/to/output_file/merged_file"
+hadd "$merged_dir/$merged_file" rootname*.root
 # 删除临时目录
-rm -rf "temp_dir"
+rm -rf "/path/to/output_file/merged_file"
 # 输出合并后的文件路径
 echo "Merged file saved as: $merged_dir/$merged_file"
