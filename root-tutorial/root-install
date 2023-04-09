@@ -1,0 +1,11 @@
+#ubuntu 22安装cern root
+#查看ubuntu版本
+lsb_release -a
+#安装root所需的依赖package
+sudo apt-get install dpkg-dev cmake g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev python libssl-dev
+#下载root文件
+wget https://root.cern/download/root-version.tar.gz
+#解压文件
+tar -xzvf root-version.tar.gz
+#先执行下面的代码，然后打开.bashrc文件，将下面的代码复制到.bashrc中
+source root/bin/thisroot.sh
