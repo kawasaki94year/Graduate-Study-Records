@@ -9,3 +9,4 @@ wget https://root.cern/download/root-version.tar.gz
 tar -xzvf root-version.tar.gz
 #先执行下面的代码，然后打开.bashrc文件，将下面的代码复制到.bashrc中
 source root/bin/thisroot.sh
+#详细步骤看官网:https://root.cern/install/
