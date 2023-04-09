@@ -12,4 +12,4 @@ input_files=(
   "/home/xwl/BG/BGww/Events/run_04_4/$file_pattern"
 )
 #合并输入root文件
-hadd "$output_file" "${input_files[@]}"
+hadd "$output" "${input_files[@]}"
