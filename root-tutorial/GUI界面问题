@@ -1,0 +1,16 @@
+问题：
+在root截面输入new TBrowser 显示 ROOT comes with a web-based browser, which is now being started. 
+Revert to TBrowser by setting "Browser.Name: TRootBrowser" in rootrc file or
+by starting "root --web=off"
+Find more info on https://root.cern/for_developers/root7/#rbrowser
+Info in <THttpEngine::Create>: Starting HTTP server on port 9741
+Gtk-Message: 19:56:04.355: Not loading module "atk-bridge": The functionality is provided by GTK natively. Please try to not load it.
+(TBrowser *) 0x55a4f668d6c0
+解决办法：
+第一种：在ROOT的安装文件目录下找到system.rootrc文件，打开文件后找到：
+Browser.Name:                ROOT::Experimental::RWebBrowserImp
+将其修改为：
+Browser.Name: TRootBrowser
+重启root即可
+第二种：
+启用root时 在终端输入 root --web=off
