@@ -1,0 +1,9 @@
+1.ubuntu上安装Edge浏览器
+#终端输入
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+#终端输入
+sudo apt update
+#终端输入
+sudo apt install microsoft-edge-dev
