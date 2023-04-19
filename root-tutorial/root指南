@@ -1,3 +1,7 @@
 启动和退出root
 #在终端输入root
 xwl@xwl-HP-ProDesk-600-G3-SFF:~$ root
+#查看root的命令清单可以在root提示符后输入.help
+root [0] .help
+#退出root (root 提示符后输入.q)
+root [0] .q
