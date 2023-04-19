@@ -4,7 +4,7 @@ void test40090()
 {
   SetStyle(); #设置RooPlot对象的属性，用于绘制拟合曲线或数据分布的图形表示
   SetPrelimStyle(); #用于设置测量结果图形的样式，SetPrelimStyle()函数将图形的填充样式设置为灰色的斜线填充，表示这是一个初步的测量结果，该函数通常在绘制测量结果的图形之前调用。
-  gSystem->Load("libRooFit");
+  gSystem->Load("libRooFit"); #动态加载libRoofit库，因为RooRealVar需要使用它
         gROOT->SetStyle("Pub");
 
   TCanvas *c1 = new TCanvas("c1", "c1", 0, 0, 800, 600);
