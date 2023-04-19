@@ -2,7 +2,7 @@
 using namespace RooFit;
 void test40090()
 {
-  SetStyle();
+  SetStyle(); #设置RooPlot对象的属性，用于绘制拟合曲线或数据分布的图形表示
   SetPrelimStyle();
   gSystem->Load("libRooFit");
         gROOT->SetStyle("Pub");
