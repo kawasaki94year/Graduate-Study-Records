@@ -30,7 +30,8 @@ if [ ! -d BKG_3TeV_eellvv ];then
         echo "set nevents = 10000" >> script.txt #set events number
         echo "set ebeam1 = 1500" >> script.txt #set center-of-mass to 100TeV
         echo "set ebeam2 = 1500" >> script.txt
-        echo "set lpp1 = -3" >> script.txt
+        echo "set lpp1 = -3" >> script.txt #初始碰撞的粒子类型和动量 -3表示正电子，3表示负电子，0表示不设置初始碰撞粒子，1表示质子，-1表示反质子，2表示质子的弹性光子，4表示
+	                                   #4表示mu+,-4表示mu-
         echo "set lpp2 = +3" >> script.txt
         echo "set pdlabel1 clic3000ll" >> script.txt #在能量为 3 TeV 的环形电子正负子对撞机 (Compact Linear Collider，简称 CLIC) 中运行的实验而开发的。
                                                      #而 "ll" 表示该集合是用于描述轻子对碰撞的。
