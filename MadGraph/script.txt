@@ -1,0 +1,47 @@
+#! /bin/bash
+file_pattern="tag_1_delphes_events.root"
+output="3-eellvv.root"
+megred_dir=/home/xwl/BG/BKG_3TeV_eellvv/Root/
+input_files=(
+        "/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_0/$file_pattern"
+	"/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_1/$file_pattern"
+	"/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_2/$file_pattern"
+	"/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_3/$file_pattern"
+	"/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_4/$file_pattern"
+	"/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_5/$file_pattern"
+	"/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_6/$file_pattern"
+	"/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_7/$file_pattern"
+	"/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_8/$file_pattern"
+	"/home/xwl/BG/BKG_3TeV_eellvv/Events/run_01_9/$file_pattern"
+)
+rootfile="Root"
+rootpath=/home/xwl/BG/BKG_3TeV_eellvv/
+mainpath=/home/xwl/BG 
+cd $mainpath
+if [ ! -d BKG_3TeV_eellvv ];then
+        echo "import sm" >> script.txt #Input Model File 
+        echo "generate e+ e- > l+ l- vl vl~" >> script.txt #generate events
+        echo "output BKG_3TeV_eellvv" >> script.txt #output file
+	echo "launch BKG_3TeV_eellvv" >> script.txt
+	#echo "multi_run 10" >> script.txt #run Five hundred thousand: nevents * multi_run
+        echo "shower = Pythia8" >> script.txt 
+        echo "detector = Delphes" >> script.txt 
+        echo "analysis = MadAnalysis5" >> script.txt 
+        echo "set nevents = 10000" >> script.txt #set events number
+        echo "set ebeam1 = 1500" >> script.txt #set center-of-mass to 100TeV
+        echo "set ebeam2 = 1500" >> script.txt
+        echo "set lpp1 = -3" >> script.txt
+        echo "set lpp2 = +3" >> script.txt
+        echo "set pdlabel1 clic3000ll" >> script.txt #在能量为 3 TeV 的环形电子正负子对撞机 (Compact Linear Collider，简称 CLIC) 中运行的实验而开发的。
+                                                     #而 "ll" 表示该集合是用于描述轻子对碰撞的。
+                                                     #作用是设置使用 CLIC3000LL PDF 集合描述初态粒子的 PDF 分布。具体来说，
+                                                     #这意味着 MadGraph 将使用该集合中提供的概率密度函数来计算电子和正电子（或正电子和电子）的 PDF 分布
+        echo "set pdlabel2 clic3000ll" >> script.txt
+        echo "set WHP auto" >> script.txt
+        /home/xwl/MG5_aMC_v3.4.2/MG5_aMC_v3_4_2/bin/mg5_aMC script.txt
+        rm -rf script.txt
+        mkdir $rootpath/$rootfile
+        hadd "$megred_dir/$output" "${input_files[@]}"
+else
+        echo "file exist"
+fi
