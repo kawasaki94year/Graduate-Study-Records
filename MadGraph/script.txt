@@ -38,6 +38,7 @@ if [ ! -d BKG_3TeV_eellvv ];then
                                                      #作用是设置使用 CLIC3000LL PDF 集合描述初态粒子的 PDF 分布。具体来说，
                                                      #这意味着 MadGraph 将使用该集合中提供的概率密度函数来计算电子和正电子（或正电子和电子）的 PDF 分布
         echo "set pdlabel2 clic3000ll" >> script.txt
+	echo "set group_subprocesses False" >> script.txt #禁用费曼图分组
         echo "set WHP auto" >> script.txt
         /home/xwl/MG5_aMC_v3.4.2/MG5_aMC_v3_4_2/bin/mg5_aMC script.txt
         rm -rf script.txt
