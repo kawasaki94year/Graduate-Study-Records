@@ -5,8 +5,14 @@
 #include "TH2.h"
 #include "TRandom.h"
 #include "TLatex.h"
+#include <TH1.h>
+#include <TStyle.h>
+#include <TLegend.h>
+#include <TCanvas.h>
 
 void draw_histograms(){
+  gStyle->SetOptStat(0); //Remove the Entries and Means boxes from histogram
+  
   TFile *hh = new TFile("/home/xwl/His_signal_ana/cut-3-800/Root/sig2pt.root");
   TFile *ww = new TFile("/home/xwl/His_Bkg_ana/3-tev/BkG_ww/Root/bw2pt.root");
   TFile *zz = new TFile("/home/xwl/His_Bkg_ana/3-tev/BkG_zz/Root/bz2pt.root");
