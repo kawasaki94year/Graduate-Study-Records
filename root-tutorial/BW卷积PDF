@@ -21,44 +21,34 @@ void fit4260()
     TTree *tree = (TTree*)file->Get("fitzcm");
 
     // 创建RooFit变量
-    RooRealVar x("x", "x", 3.8, 4); // 替换min_value和max_value为你的x变量范围
+    RooRealVar x("x", "x", 3.6, 4.1); // 替换min_value和max_value为你的x变量范围
 
     // 创建RooFit变量用于背景拟合参数
-    RooRealVar a("a", "a", 3.85,3.6,4.1);
-    RooRealVar b("b", "b", 2,0,4);
-    RooRealVar c("c", "c", 2,0,4);
-    RooRealVar d("d", "d", 2,0,4);
+    RooRealVar a("a", "a", 0);
+    RooRealVar b("b", "b", 0);
+    RooRealVar c("c", "c", 0);
+    RooRealVar d("d", "d", 0);
 
-    // 创建Breit-Wigner模型
-    RooRealVar mean("mean", "mean", 0.25,3.6,4.1);
-    RooRealVar width("width", "width", 0.2,3.8,4);
-    RooBreitWigner bw("bw", "Breit-Wigner", x, mean, width);
-
-    // 创建Gaussian模型
-    RooRealVar sigma("sigma", "sigma", 0.1,0.1,1);
-    RooGaussian gauss("gauss", "Gaussian", x, mean, sigma);
-
-    // 创建Breit-Wigner卷积Gaussian模型
-    RooFFTConvPdf signal("signal", "Signal", x, bw, gauss);
+   // 创建Breit-Wigner卷积Gaussian模型
+    RooRealVar mean("mean", "mean", 3.8,3.6,4.1);
+    RooRealVar width("width", "width", 0.02,0,0.4);
+    RooRealVar sigma("sigma", "sigma",0.05,0.001,0.1);
+    RooVoigtian BW("BW"," bw x gauss ",x, mean,width,sigma);
 
     // 创建背景模型
-    RooRealVar bg_x0("bg_x0", "bg_x0", 1,3.6,4.1);
-    RooRealVar bg_power("bg_power", "bg_power",1,3.6,4.1);
-    RooRealVar bg_c("bg_c", "bg_c", 1,3.6,4.1);
-    RooRealVar bg_d("bg_d", "bg_d", 1,3.6,4.1);
-    RooGenericPdf background("background", "Background", "a / (x - bg_x0)^b + c + d*x",
-                             RooArgSet(x, a, b, c, d, bg_x0, bg_power, bg_c, bg_d));
+    RooGenericPdf background("background", "Background", "a / (x - 3.6)^b + c + d*x",
+                             RooArgList(x, a, b, c, d));
 
     // 创建总拟合模型
-    RooRealVar signal_fraction("signal_fraction", "signal_fraction",3,0,100);
-    RooRealVar background_fraction("background_fraction", "background_fraction",3,0,100);
-    RooAddPdf model("model", "Model", RooArgList(signal, background), RooArgList(signal_fraction, background_fraction));
+    RooRealVar signal_fraction("signal_fraction", "signal_fraction",200,0,10000);
+    RooRealVar background_fraction("background_fraction", "background_fraction",1000,0,10000);
+    RooAddPdf model("model", "Model", RooArgList(BW, background), RooArgList(signal_fraction, background_fraction));
 
     // 将数据加载到RooDataSet中
     RooDataSet data("data", "Data", RooArgSet(x), Import(*tree));
 
     // 进行拟合
-    model.fitTo(data,Range(3.8,4),Extended(kTRUE));
+    model.fitTo(data,Range(3.6,4.1),Extended(kTRUE));
 
     // 创建画布和绘图
     TCanvas *canvas = new TCanvas("canvas", "Fit Result", 800, 600);
