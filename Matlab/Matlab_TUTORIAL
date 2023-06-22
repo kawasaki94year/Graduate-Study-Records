@@ -1,1 +1,4 @@
-
+Matlab常用知识：
+   未指定输出变量，Matlab将使用ans来存储计算结果
+Matlab数学常用函数:
+   sin(x)
