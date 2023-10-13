@@ -1,13 +1,15 @@
-𝑡 = 𝑡𝑖𝑙𝑒𝑑𝑙𝑎𝑦𝑜𝑢𝑡(2,2);
-𝑡𝑖𝑡𝑙𝑒(𝑡,"Trigonometric Functions") 
-𝑥 = 𝑙𝑖𝑛𝑠𝑝𝑎𝑐𝑒(0,30); 
-𝑛𝑒𝑥𝑡𝑡𝑖𝑙𝑒 𝑝𝑙𝑜𝑡(𝑥,sin⁡(𝑥)) 
-𝑡𝑖𝑡𝑙𝑒("Sine") 
-𝑛𝑒𝑥𝑡𝑡𝑖𝑙𝑒 
-𝑝𝑙𝑜𝑡(𝑥,cos⁡(𝑥)) 
-𝑡𝑖𝑡𝑙𝑒("Cosine") 
-𝑛𝑒𝑥𝑡𝑡𝑖𝑙𝑒 𝑝𝑙𝑜𝑡(𝑥,tan⁡(𝑥))
- 𝑡𝑖𝑡𝑙𝑒("Tangent") 
-𝑛𝑒𝑥𝑡𝑡𝑖𝑙𝑒 
-𝑝𝑙𝑜𝑡(𝑥,sec⁡(𝑥))
- 𝑡𝑖𝑡𝑙𝑒("Secant") 
+t = tiledlayout(2,2);
+title(t,"Trigonometric Functions")
+x = linspace(0,30);
+nexttile
+plot(x,sin(x))
+title("Sine")
+nexttile
+plot(x,cos(x))
+title("Cosine")
+nexttile
+plot(x,tan(x))
+title("Tangent")
+nexttile
+plot(x,sec(x))
+title("Secant")
