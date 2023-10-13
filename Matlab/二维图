@@ -1,3 +1,6 @@
-x = linspace(0,2*pi);
+x = linspace(0,2*pi); //x轴的范围
 y = sin(x);
 plot(x,y)
+xlabel("x")  //x轴标题
+ylabel("sin(x)")  //y轴标题
+title("Plot of the Sine Function") //题目
