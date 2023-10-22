@@ -1,1 +1,2 @@
-
+#创建虚拟CAN通道
+canch = canChannel("MathWorks","Virtual 1",1);
