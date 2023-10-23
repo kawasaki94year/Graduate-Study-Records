@@ -1,0 +1,30 @@
+info = canChannelList;
+
+canch1 = canChannel("MathWorks","Virtual 1",1) %channel 1
+canch2 = canChannel("MathWorks","Virtual 1",2) %channel 2
+
+%change channel speed
+configBusSpeed(canch1,250000)%250kps
+canch1.BusSpeed
+
+configBusSpeed(canch2,250000)%250kps
+canch2.BusSpeed
+
+start(canch1)
+start(canch2)
+
+%CAN message
+messageout = canMessage(500,false,8) %standard ID:500,data 
+                                     %length:8 bytes
+                                     %standard is flase and extend is true
+pack(messageout,25,0,16,'LittleEndian') %pack message
+messageout.Data
+
+transmit(canch1,messageout) %channel 1 transmit
+
+messagein = receive(canch2,1) %channel 2 receive
+
+value = unpack(messagein,0,16,'LittleEndian','int16')
+
+%stop(canch1)
+%stop(canch2)
