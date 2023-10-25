@@ -55,6 +55,9 @@ void FitDataNH() {
     TF1 *fitFunc2 = new TF1("fitFunc2", "pol3", MData.front(), MData.back());
     TF1 *fitFunc3 = new TF1("fitFunc3", "pol3", MData.front(), MData.back());
 
+    //三次多项式
+    //a0+a1*x+a2*x^2+a3*x^3 a0 a1 a2 a3 表示拟合的参数
+
     graph1->Fit(fitFunc1, "R");
     graph2->Fit(fitFunc2, "R");
     graph3->Fit(fitFunc3, "R");
